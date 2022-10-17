@@ -5,12 +5,12 @@ const idUserTransaction = User.id;
 const userTransaction = User.name;
 
 export class Transaction {
+    title;
     idUserTransaction;
-    userTransaction;
+    type;
     transaction_id;
     amount;
-    value;
-    create_id;
+    creation_date;
 
     constructor() {
         if (!this.id) {
