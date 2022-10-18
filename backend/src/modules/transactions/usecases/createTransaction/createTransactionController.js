@@ -6,7 +6,7 @@ export class CreateTransactionController {
         this.CreateTransaction = new CreateTransaction();
     }
 
-    handle(req, res) {
+    handle(request, response) {
         const {title, idUserTransaction, type, transaction_id,amount,creation_date} = request.body;
 
         const user = this.CreateTransaction.execute({

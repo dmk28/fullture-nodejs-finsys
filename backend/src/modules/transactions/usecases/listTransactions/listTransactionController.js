@@ -6,7 +6,7 @@ export class listTransactionsController {
         this.listTransactions = new listTransactions();
     }
 
-    async handle(req, response) {
+    async handle(request, response) {
         const users = await this.listTransactions.execute();
 
         return response.json(users);

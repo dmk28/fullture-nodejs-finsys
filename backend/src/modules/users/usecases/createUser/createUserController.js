@@ -6,7 +6,7 @@ export class CreateUserController {
         this.CreateUserCases = new CreateUserCases();
     }
 
-    handle(req, res) {
+    handle(request, response) {
         const { name, username, email, password} = request.body;
 
         const user = this.CreateUserCases.execute({
