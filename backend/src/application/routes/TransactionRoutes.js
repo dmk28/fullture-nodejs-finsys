@@ -8,11 +8,11 @@ import {listTransactionsController} from '../modules/transactions/usecases/listT
 
 //Transaction Route POST
 transactionRoutes.post("/transactions", (req, res) => {
-    return makeTransaction.handle(req, res);
+    return createTransaction.handle(req, res);
 });
 //transaction Route GET
 transactionRoutes.get("/transactions", (req, res) => {
-    return listTransactions.handle(req,res);
+    return listTransactionsController.handle(req,res);
 });
 
 export default transactionRoutes;

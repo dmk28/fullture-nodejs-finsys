@@ -1,2 +1,2 @@
-import { TransactionsRepository } from "../../../users/repositories/TransactionsRepository";
+import { TransactionsRepository } from "../../repositories/TransactionsRepository";
 import {ListTransactions} from "./listTransactions.js"

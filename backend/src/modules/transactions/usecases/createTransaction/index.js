@@ -1,4 +1,4 @@
-import { TransactionsRepository } from "../../../users/repositories/TransactionsRepository";
+import { TransactionsRepository } from "../../repositories/TransactionsRepository";
 import { CreateTransaction } from "./createTransaction";
 import {CreateTransactionController} from "./createTransactionController"
 

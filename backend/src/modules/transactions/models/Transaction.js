@@ -1,5 +1,5 @@
 import {v4 as uuidV4} from "uuid";
-import { User } from "./User";
+import { User } from "../../users/models/User";
 
 const idUserTransaction = User.id;
 const userTransaction = User.name;
