@@ -1,4 +1,4 @@
-import { TransactionsRepository } from "../../repositories/TransactionsRepository";
+import  {TransactionsRepository } from "../../repositories/TransactionsRepository.js";
 
 
 
@@ -8,7 +8,7 @@ export class CreateTransaction {
 
     }
 
-    execute({title, idUserTransaction, type, transaction_id,amount,creation_date}) {
+    execute({title, type, category, amount, creation_date}) {
 
         const transactionIdSearch = this.TransactionsRepository.findByTransactionID(idUserTransaction);
         const emailExists = this.UserRepository.findByEmail(email);
@@ -19,9 +19,8 @@ export class CreateTransaction {
         
         const transaction = this.TransactionsRepository.create({
             title, 
-            idUserTransaction, 
             type, 
-            transaction_id,
+            category,
             amount,
             creation_date
         });

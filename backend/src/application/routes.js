@@ -1,18 +1,10 @@
 import { Router } from "express";
+import transactionRoutes from "./routes/transactions.js";
+// import usersRouters from "./routes/userRoutes.js";
 
 const routes = Router();
 
-
-routes.get("/", (request,response) => {
-    response.status(200).json({
-        message: "CONN OK",
-    });
-});
-
-routes.post("/transactions", (request, response) => {
-    response.status(200).json({
-        message: "Record Data"
-    });
-    
-})
+routes.use("/login", loginRoute)
+routes.use("/users", usersRouters)
+routes.use("/transactions", transactionRoutes)
 export default routes;

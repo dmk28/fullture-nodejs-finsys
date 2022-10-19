@@ -1,14 +1,14 @@
 import { response } from "express";
-import { listTransactions } from "./listTransactions";
+import { ListTransactions } from "./listTransactions.js";
 
 export class listTransactionsController {
     constructor() {
-        this.listTransactions = new listTransactions();
+        this.listTransactions = new ListTransactions();
     }
 
     async handle(request, response) {
-        const users = await this.listTransactions.execute();
+        const transactions = await this.listTransactions.execute();
 
-        return response.json(users);
+        return response.json(transactions);
     }
 }

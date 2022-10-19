@@ -1,24 +1,25 @@
-import { response } from "express";
-import { CreateTransaction } from "./createTransaction";
 
+import { CreateTransaction } from "./createTransaction.js";
+import { AppException } from "../../../../application/errors/AppException.js";
 export class CreateTransactionController {
     constructor() {
         this.CreateTransaction = new CreateTransaction();
     }
 
     handle(request, response) {
-        const {title, idUserTransaction, type, transaction_id,amount,creation_date} = request.body;
+        const {title, type, category, amount, creation_date} = request.body;
 
-        const user = this.CreateTransaction.execute({
+        const transaction  = this.CreateTransaction.execute({
             title, 
-            idUserTransaction, 
             type, 
-            transaction_id,
+            category,
             amount,
             creation_date
         });
 
-        return response.json(user);
+        response.statusCode = 201;
+        return response.json(transaction)
+
     }
 }
 

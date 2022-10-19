@@ -1,45 +1,49 @@
-import {Transactions} from "../models/Transaction.js";
+import { Transaction } from "../models/Transaction.js";
 
 export class TransactionsRepository {
-    transactions;
+  transactions;
 
-    static INSTANCE;
+  static INSTANCE;
 
-    constructor() {
-        this.transactions = [];
+  constructor() {
+    this.transactions = [];
+  }
+
+  static getInstance() {
+    if (!TransactionsRepository.INSTANCE) {
+      TransactionsRepository.INSTANCE = new TransactionsRepository();
     }
 
+    return TransactionsRepository.INSTANCE;
+  }
 
-    static getInstance(){
-        if(!TransactionsRepository.INSTANCE) {
-            TransactionsRepository.INSTANCE = new TransactionsRepository();
-        }
-        return TransactionsRepository.INSTANCE;
-    }
-    create({title, idUserTransaction, type, transaction_id,amount,creation_date}) {
-        const transaction = new Transaction();
+  create({ title, type, category, amount }) {
+    const transaction = new Transaction();
+
+    Object.assign(transaction, {
+      title,
+      type,
+      category,
+      amount,
+      created_at: new Date(),
+    });
     
-        Object.assign(transaction, {
-            title,
-            idUserTransaction,
-            type,
-            transaction_id,
-            amount,
-            creation_date: new Date()
-        })
-       this.transactions.push(transaction);
-       return transaction;
+    this.transactions.push(transaction);
 
-    }
+    return transaction;
+  }
 
-    list() {
-        return this.transactions;
-    }
-    findByTransactionName() {
-        return this.transactions.find((userTransaction) => transaction.userTransaction === userTransaction);
+  list() {
+    return this.transactions;
+  }
+  
+  deleteById(id) {
+    const index = this.transactions.findIndex((transaction) => transaction.id === id);
 
-    }
-    
+    this.transactions.splice(index, 1);
+
+    return;
+  }
 }
 
 

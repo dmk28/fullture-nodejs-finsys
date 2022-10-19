@@ -1,14 +1,13 @@
 import {v4 as uuidV4} from "uuid";
-import { User } from "../../users/models/User";
+import { User } from "../../users/models/User.js";
 
-const idUserTransaction = User.id;
+/* const idUserTransaction = User.id;
 const userTransaction = User.name;
-
+ */
 export class Transaction {
     title;
-    idUserTransaction;
     type;
-    transaction_id;
+    category;
     amount;
     creation_date;
 
