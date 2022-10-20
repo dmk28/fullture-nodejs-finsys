@@ -1,20 +1,20 @@
 
 import { CreateTransaction } from "./createTransaction.js";
-import { AppException } from "../../../../application/errors/AppException.js";
+
 export class CreateTransactionController {
     constructor() {
-        this.CreateTransaction = new CreateTransaction();
+        this.createTransaction = new CreateTransaction();
     }
 
     handle(request, response) {
-        const {title, type, category, amount, creation_date} = request.body;
+        const {title, type, category, amount} = request.body;
 
-        const transaction  = this.CreateTransaction.execute({
+        const transaction  = this.createTransaction.execute({
             title, 
             type, 
             category,
-            amount,
-            creation_date
+            amount
+            
         });
 
         response.statusCode = 201;

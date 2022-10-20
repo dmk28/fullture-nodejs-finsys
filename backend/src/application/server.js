@@ -1,4 +1,5 @@
 import express from "express";
+import "express-async-errors";
 import { AppException } from "./errors/AppException.js";
 
 import routes from "./routes.js";
@@ -11,7 +12,7 @@ app.use((error, request, response, next) => {
     if (error instanceof AppException) {
         return response.status(error.statusCode).json({
             message: error.message,
-                })
+                });
     }
     return response.status(500).json({
         status: "Error",
@@ -20,7 +21,7 @@ app.use((error, request, response, next) => {
 });
 
 
-app.listen(3300, () => {
+app.listen(3000, () => {
     console.log("Server OK")
 });
 

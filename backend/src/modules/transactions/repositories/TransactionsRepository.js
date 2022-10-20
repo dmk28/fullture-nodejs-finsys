@@ -25,7 +25,7 @@ export class TransactionsRepository {
       type,
       category,
       amount,
-      created_at: new Date(),
+      created_at: new Date()
     });
     
     this.transactions.push(transaction);

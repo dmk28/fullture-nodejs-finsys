@@ -1,20 +1,16 @@
-import {v4 as uuidV4} from "uuid";
-import { User } from "../../users/models/User.js";
+import { v4 as uuidV4 } from "uuid";
 
-/* const idUserTransaction = User.id;
-const userTransaction = User.name;
- */
 export class Transaction {
-    title;
-    type;
-    category;
-    amount;
-    creation_date;
+  title;
+  type;
+  category;
+  amount;
+  created_at;
 
-    constructor() {
-        if (!this.id) {
-            this.id = uuidV4;
-        }
+  constructor() {
+    if (!this.id) {
+      this.id = uuidV4();
     }
-    
+  }
 }
+

@@ -4,25 +4,20 @@ import  {TransactionsRepository } from "../../repositories/TransactionsRepositor
 
 export class CreateTransaction {
     constructor() {
-        this.TransactionsRepository = TransactionsRepository.getInstance();
+        this.transactionsRepository = TransactionsRepository.getInstance();
 
     }
 
-    execute({title, type, category, amount, creation_date}) {
+    execute({title, type, category, amount}) {
 
-        const transactionIdSearch = this.TransactionsRepository.findByTransactionID(idUserTransaction);
-        const emailExists = this.UserRepository.findByEmail(email);
         
-        if (transactionIdSearch && emailExists) {
-            throw new AppException(400, "Transaction Already Computed")
-        }
-        
-        const transaction = this.TransactionsRepository.create({
+    
+        const transaction = this.transactionsRepository.create({
             title, 
             type, 
             category,
             amount,
-            creation_date
+            
         });
         return transaction;
     }
