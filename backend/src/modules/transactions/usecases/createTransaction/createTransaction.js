@@ -16,15 +16,15 @@ export class CreateTransaction {
     
         const transaction = await prisma.transactions.create({
             data: {
-            title, 
-            type, 
-            category,
-            amount,
-            created_at: new Date()
+                title, 
+                type, 
+                category,
+                amount,
+                created_at: new Date(),
             }
         });
 
     await prisma.$disconnect();
-        return transaction;
+    return transaction;
     }
 }
