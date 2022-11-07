@@ -6,6 +6,7 @@ import { createTransactionController } from "../../modules/transactions/usecases
 import { ListTransactionController } from "../../modules/transactions/usecases/listTransactions/index.js";
 //import  {transactionQueryController} from "../../modules/transactions/usecases/findTransactions/index.js";
 import {deleteTransactionsController} from "../../modules/transactions/usecases/deleteTransaction/index.js";
+import {updateTransactionsController} from "../../modules/transactions/usecases/updateTransaction/index.js"
 transactionRoutes.post("/transactions", (request, response) => {
     return createTransactionController.handle(request, response);
 })

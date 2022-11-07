@@ -9,22 +9,23 @@ export class CreateTransaction {
 
     } */
 
-   async execute({title, type, category, amount}) {
+   async execute({ title, type, category, amount }) {
 
     await prisma.$connect();
         
     
-        const transaction = await prisma.transactions.create({
+    const transaction = await prisma.transactions.create({
             data: {
                 title, 
                 type, 
                 category,
                 amount,
                 created_at: new Date(),
-            }
+            },
         });
 
     await prisma.$disconnect();
+
     return transaction;
     }
 }

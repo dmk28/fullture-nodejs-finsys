@@ -13,9 +13,9 @@ datasource db {
 model transactions {
   id       String @id @default(auto()) @map("_id") @db.ObjectId
   created  DateTime @db.Date
-  title      String
-  type       String
-  category   String
-  amount     Float
+  title    String
+  type     String
+  category String
+  amount   Float
 }
 
