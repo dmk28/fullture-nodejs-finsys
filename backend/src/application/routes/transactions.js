@@ -1,11 +1,11 @@
-import Router from "express";
+import Router, { response } from "express";
 
 const transactionRoutes = Router(); 
 
 import { createTransactionController } from "../../modules/transactions/usecases/createTransaction/index.js";
 import { ListTransactionController } from "../../modules/transactions/usecases/listTransactions/index.js";
-import  {transactionQueryController} from "../../modules/transactions/usecases/findTransactions/index.js"
-
+//import  {transactionQueryController} from "../../modules/transactions/usecases/findTransactions/index.js";
+import {deleteTransactionsController} from "../../modules/transactions/usecases/deleteTransaction/index.js";
 transactionRoutes.post("/transactions", (request, response) => {
     return createTransactionController.handle(request, response);
 })
@@ -15,7 +15,15 @@ transactionRoutes.get("/transactions", (request, response) => {
 })
 
 
-transactionRoutes.get("/transactions", (request, response) => {
+/* transactionRoutes.get("/transactions", (request, response) => {
     return transactionQueryController.handle(request, response);
+}) */
+
+transactionRoutes.put("/:id", (request, response) => {
+    return updateTransactionsController.handle(request, response);
+})
+
+transactionRoutes.delete("/:id", (request, response) => {
+    return deleteTransactionsController.handle(request, response);
 })
 export default transactionRoutes;

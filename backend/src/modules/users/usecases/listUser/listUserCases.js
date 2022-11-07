@@ -1,4 +1,4 @@
-import { UserRepository } from "../../repositories/UsersRepository";
+import { UserRepository } from "../../repositories/UsersRepository.js";
 
 export class ListUserCases {
     

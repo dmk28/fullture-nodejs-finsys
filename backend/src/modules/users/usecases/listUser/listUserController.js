@@ -1,5 +1,5 @@
 import { response } from "express";
-import { ListUserCases } from "./listUserCases";
+import { ListUserCases } from "./listUserCases.js";
 
 export class ListUsersController {
     constructor() {

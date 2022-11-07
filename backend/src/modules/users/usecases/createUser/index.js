@@ -1,6 +1,6 @@
-import { UserRepository, UserRepository } from "../../repositories/UsersRepository";
-import { CreateUserCases } from "./createUserCases";
-import { CreateUserController } from "./createUserController";
+import { UserRepository, UserRepository } from "../../repositories/UsersRepository.js";
+import { CreateUserCases } from "./createUserCases.js";
+import { CreateUserController } from "./createUserController.js";
 
 const UserRepository = UserRepository.getInstance();
 
