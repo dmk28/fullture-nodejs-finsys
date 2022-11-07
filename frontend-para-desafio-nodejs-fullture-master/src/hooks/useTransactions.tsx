@@ -13,10 +13,10 @@ interface Transaction {
   amount: number;
   type: string;
   category: string;
-  createdAt: string;
+  created: string;
 }
 
-type TransactionInput = Omit<Transaction, "id" | "createdAt">;
+type TransactionInput = Omit<Transaction, "id" | "created">;
 
 interface TransactionsProviderProps {
   children: ReactNode;
@@ -37,7 +37,9 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
   useEffect(() => {
     api
       .get("/transactions")
-      .then((response) => setTransactions(response.data.transactions));
+      .then((response) => {
+        setTransactions(response.data)
+      });
   }, []);
 
   async function createTransaction(transactionInput: TransactionInput) {
@@ -46,9 +48,9 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
       createdAt: new Date(),
     });
 
-    const { transaction } = response.data;
+    const { data } = response;
 
-    setTransactions([...transactions, transaction]);
+    setTransactions([...transactions, data]);
   }
 
   return (

@@ -1,6 +1,6 @@
 import { FormEvent, useState } from "react";
 import Modal from "react-modal";
-import { useTransactions } from "../../hooks/useTransactions";
+import { api } from "../../services/api";
 
 import incomeImg from "../../assets/income.svg";
 import outcomeImg from "../../assets/outcome.svg";
@@ -8,37 +8,48 @@ import closeImg from "../../assets/close.svg";
 
 import { Container, TransactionTypeContainer, RadioBox } from "./styles";
 
-interface NewTransactionModalProps {
+interface EditTransactionModalProps {
   isOpen: boolean;
   onRequestClose: () => void;
+  id: any,
+  title: string, 
+  category: string, 
+  type: string, 
+  amount: number
 }
 
-export function NewTransactionModal({
+export function EditTransactionModal({
   isOpen,
   onRequestClose,
-}: NewTransactionModalProps) {
-  const { createTransaction } = useTransactions();
+  id,
+  title,
+  category,
+  type,
+  amount
+}: EditTransactionModalProps) {
+  // const { createTransaction } = useTransactions();
 
-  const [type, setType] = useState("deposit");
-  const [title, setTitle] = useState("");
-  const [amount, setAmount] = useState(0);
-  const [category, setCategory] = useState("");
+  const [newType, setNewType] = useState(type);
+  const [newTitle, setNewTitle] = useState(title);
+  const [newAmount, setNewAmount] = useState(amount)
+  const [newCategory, setNewCategory] = useState(category);
 
   async function handleCreateNewTransaction(event: FormEvent) {
     event.preventDefault();
-    await createTransaction({
-      title,
-      amount,
-      category,
-      type,
-       });
 
-    setTitle("");
-    setAmount(0);
-    setCategory("");
-    setType("deposit");
+    setNewTitle(newTitle);
+    setNewAmount(newAmount);
+    setNewCategory(newCategory);
+    setNewType(newType);
     onRequestClose();
-  }
+
+  //  await api.put(`/${id}`, {newTitle, newAmount, newCategory, newType})
+  // .then(() => {
+    console.log(id, newTitle, newAmount, newCategory, newType)
+      // window.location.reload()
+    }
+  // );
+  // }
 
   return (
     <Modal
@@ -54,28 +65,28 @@ export function NewTransactionModal({
       </button>
 
       <Container onSubmit={handleCreateNewTransaction}>
-        <h2>Cadastrar Transação</h2>
+        <h2>Editar Transação</h2>
 
         <input
           placeholder='Título'
-          value={title}
-          onChange={(event) => setTitle(event.target.value)}
+          value={newTitle}
+          onChange={(event) => setNewTitle(event.target.value)}
         />
 
         <input
           type='number'
           placeholder='Valor'
-          value={amount}
-          onChange={(event) => setAmount(Number(event.target.value))}
+          value={newAmount}
+          onChange={(event) => setNewAmount(Number(event.target.value))}
         />
 
         <TransactionTypeContainer>
           <RadioBox
             type='button'
             onClick={() => {
-              setType("deposit");
+              setNewType("deposit");
             }}
-            isActive={type === "deposit"}
+            isActive={newType === "deposit"}
             activeColor='green'>
             <img src={incomeImg} alt='Entrada' />
             <span>Entrada</span>
@@ -84,9 +95,9 @@ export function NewTransactionModal({
           <RadioBox
             type='button'
             onClick={() => {
-              setType("withdraw");
+              setNewType("withdraw");
             }}
-            isActive={type === "withdraw"}
+            isActive={newType === "withdraw"}
             activeColor='red'>
             <img src={outcomeImg} alt='Saída' />
             <span>Saída</span>
@@ -95,11 +106,11 @@ export function NewTransactionModal({
 
         <input
           placeholder='Categoria'
-          value={category}
-          onChange={(event) => setCategory(event.target.value)}
+          value={newCategory}
+          onChange={(event) => setNewCategory(event.target.value)}
         />
 
-        <button type='submit'>Cadastrar</button>
+        <button type='submit'>Salvar</button>
       </Container>
     </Modal>
   );

@@ -4,12 +4,29 @@ import { Container } from "./styles";
 
 import { FiEdit, FiTrash2 } from "react-icons/fi";
 
-function handleEditTransaction() {
+import moment from "moment";
+
+import { api } from "../../services/api";
+
+function handleEditTransaction(id: any, title: string, category: string, amount: number, type: string) {
   // Função de editar a transação
+  // api.put(`/${id}`, data)
+  // .then(() => {
+    console.log("edit id", id, title, category, amount, type)
+      // window.location.reload()
+  //   }
+  // );
+  
 }
 
-function handleDeleteTransaction() {
+function handleDeleteTransaction(id: any) {
   // Função de deletar a transação
+    api.delete(`/${id}`)
+        .then(() => {
+            alert('Delete successful')
+            window.location.reload()
+          }
+        );
 }
 
 export function TransactionsTable() {
@@ -41,18 +58,24 @@ export function TransactionsTable() {
                 </td>
                 <td>{transaction.category}</td>
                 <td>
-                  {new Intl.DateTimeFormat("pt-BR").format(
-                    new Date(transaction.createdAt)
-                  )}
+                  {/* {new Intl.DateTimeFormat('pt-BR', {timeZone: 'UTC'}).format(
+                    new Date(transaction.createdAt))} */}
+                    {moment(transaction.created).format("DD/MM/YYYY")}
                 </td>
                 <td>
                   <FiEdit
                     className='editButton'
-                    onClick={handleEditTransaction}
+                    onClick={() => handleEditTransaction(
+                        transaction.id, 
+                        transaction.title, 
+                        transaction.category, 
+                        transaction.amount,
+                        transaction.type
+                    )}
                   />
                   <FiTrash2
                     className='deleteButton'
-                    onClick={handleDeleteTransaction}
+                    onClick={() => handleDeleteTransaction(transaction.id)}
                   />
                 </td>
               </tr>

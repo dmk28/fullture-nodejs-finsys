@@ -1,5 +1,5 @@
 import { prisma } from "../../../../application/database/prismaClient.js";
-import  {TransactionsRepository } from "../../repositories/TransactionsRepository.js";
+//import  {TransactionsRepository } from "../../repositories/TransactionsRepository.js";
 
 
 
@@ -10,16 +10,21 @@ export class CreateTransaction {
     } */
 
    async execute({title, type, category, amount}) {
+
     await prisma.$connect();
         
     
         const transaction = await prisma.transactions.create({
+            data: {
             title, 
             type, 
             category,
             amount,
-            created: new Date()
+            created_at: new Date()
+            }
         });
+
+    await prisma.$disconnect();
         return transaction;
     }
 }
