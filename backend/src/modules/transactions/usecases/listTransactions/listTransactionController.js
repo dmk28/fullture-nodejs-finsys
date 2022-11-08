@@ -1,4 +1,4 @@
-import { response } from "express";
+
 import { ListTransactions } from "./listTransactions.js";
 
 export class listTransactionsController {

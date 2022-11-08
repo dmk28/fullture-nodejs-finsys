@@ -60,7 +60,7 @@ export function TransactionsTable() {
                 <td>
                   {/* {new Intl.DateTimeFormat('pt-BR', {timeZone: 'UTC'}).format(
                     new Date(transaction.createdAt))} */}
-                    {moment(transaction.created).format("DD/MM/YYYY")}
+                    {moment(transaction.created_at).format("DD/MM/YYYY")}
                 </td>
                 <td>
                   <FiEdit

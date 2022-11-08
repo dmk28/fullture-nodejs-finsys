@@ -1,10 +1,10 @@
-import { TransactionsRepository } from "../../repositories/TransactionsRepository";
-import { updateTransaction } from "./updateTransactions";
-import { UpdateTransactionController } from "./updateTransactionsController";
+import { TransactionsRepository } from "../../repositories/TransactionsRepository.js";
+import { updateTransaction } from "./updateTransactions.js";
+import { UpdateTransactionController } from "./updateTransactionsController.js";
 
 
-const transactionsRepositry = new TransactionsRepository.getInstance();
-const UpdateTransaction = new updateTransaction(transactionsRepositry);
+const transactionsRepository = TransactionsRepository.getInstance();
+const UpdateTransaction = new updateTransaction(transactionsRepository);
 const updateTransactionsController = new UpdateTransactionController(UpdateTransaction);
 
 export {updateTransactionsController};

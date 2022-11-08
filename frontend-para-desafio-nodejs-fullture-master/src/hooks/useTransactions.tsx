@@ -13,10 +13,10 @@ interface Transaction {
   amount: number;
   type: string;
   category: string;
-  created: string;
+  created_at: string;
 }
 
-type TransactionInput = Omit<Transaction, "id" | "created">;
+type TransactionInput = Omit<Transaction, "id" | "created_at">;
 
 interface TransactionsProviderProps {
   children: ReactNode;
@@ -45,7 +45,7 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
   async function createTransaction(transactionInput: TransactionInput) {
     const response = await api.post("/transactions", {
       ...transactionInput,
-      createdAt: new Date(),
+      created_at: new Date(),
     });
 
     const { data } = response;

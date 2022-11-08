@@ -5,6 +5,6 @@ import usersRoutes from "./routes/usersRoutes.js"
 const routes = Router();
 
 // routes.use("/login", loginRoute)
-routes.use(usersRoutes)
+//routes.use(usersRoutes)
 routes.use(transactionRoutes)
 export default routes;

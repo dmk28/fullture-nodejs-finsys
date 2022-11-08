@@ -1,5 +1,5 @@
 //import { TransactionsRepository } from "../../repositories/TransactionsRepository.js";
-import { prisma } from "../../../../application/database/prismaClient.js";
+import { prisma } from "../../../../application/database/PrismaClient.js";
 import { AppException } from "../../../../application/errors/AppException.js";
 
 
@@ -14,7 +14,7 @@ export class ListTransactions{
 
         await prisma.$connect();
 
-        const transactions = await prisma.TransactionsRepository.list();
+        const transactions = await prisma.transactions.findMany();
 
         if (!transactions.length) {
             throw  new AppException(404, "Transaction Does Not Exist");

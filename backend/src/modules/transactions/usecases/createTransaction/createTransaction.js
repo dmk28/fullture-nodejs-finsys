@@ -1,4 +1,4 @@
-import { prisma } from "../../../../application/database/prismaClient.js";
+import { prisma } from "../../../../application/database/PrismaClient.js";
 //import  {TransactionsRepository } from "../../repositories/TransactionsRepository.js";
 
 

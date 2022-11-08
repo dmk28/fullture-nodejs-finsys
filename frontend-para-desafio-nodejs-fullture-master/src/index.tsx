@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import { createServer, Model } from "miragejs";
 import { App } from "./App";
 
-createServer({
+/* createServer({
   models: {
     transaction: Model,
   },
@@ -45,7 +45,7 @@ createServer({
     });
   },
 });
-
+ */
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );

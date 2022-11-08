@@ -1,4 +1,4 @@
-import { prisma } from "../../../../application/database/prismaClient.js";
+import { prisma } from "../../../../application/database/PrismaClient.js";
 
 
 export class updateTransaction {
@@ -8,7 +8,7 @@ export class updateTransaction {
         await prisma.$connect();
 
 
-        const updateTransaction = await prisma.transaction.update({
+        const updateTransaction = await prisma.transactions.update({
             where: {
                 id,
             },
