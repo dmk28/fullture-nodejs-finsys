@@ -1,7 +1,7 @@
 import { FormEvent, useState } from "react";
 import Modal from "react-modal";
 import { api } from "../../services/api";
-
+import { useTransactions } from "../../hooks/useTransactions";
 import incomeImg from "../../assets/income.svg";
 import outcomeImg from "../../assets/outcome.svg";
 import closeImg from "../../assets/close.svg";
@@ -10,12 +10,13 @@ import { Container, TransactionTypeContainer, RadioBox } from "./styles";
 
 interface EditTransactionModalProps {
   isOpen: boolean;
-  onRequestClose: () => void;
+ 
   id: any,
   title: string, 
   category: string, 
   type: string, 
   amount: number
+  onRequestClose: () => void;
 }
 
 export function EditTransactionModal({
@@ -27,31 +28,37 @@ export function EditTransactionModal({
   type,
   amount
 }: EditTransactionModalProps) {
-  // const { createTransaction } = useTransactions();
+   const { updateTransaction } = useTransactions();
 
   const [newType, setNewType] = useState(type);
   const [newTitle, setNewTitle] = useState(title);
   const [newAmount, setNewAmount] = useState(amount)
   const [newCategory, setNewCategory] = useState(category);
 
-  async function handleCreateNewTransaction(event: FormEvent) {
+  async function handleEditTransaction(event: FormEvent) {
     event.preventDefault();
-
+    await updateTransaction({ 
+      title,
+      amount,
+      category,
+      type,
+    });
     setNewTitle(newTitle);
     setNewAmount(newAmount);
     setNewCategory(newCategory);
     setNewType(newType);
     onRequestClose();
 
-  //  await api.put(`/${id}`, {newTitle, newAmount, newCategory, newType})
-  // .then(() => {
-    console.log(id, newTitle, newAmount, newCategory, newType)
-      // window.location.reload()
-    }
-  // );
-  // }
+   await api.put(`/${id}`, {newTitle, newAmount, newCategory, newType})
+   .then(() => {
+    //console.log(id, newTitle, newAmount, newCategory, newType)
+       window.location.reload()
+    },
+   );
+   }
 
   return (
+    
     <Modal
       isOpen={isOpen}
       onRequestClose={onRequestClose}
@@ -64,7 +71,7 @@ export function EditTransactionModal({
         <img src={closeImg} alt='Fechar modal' />
       </button>
 
-      <Container onSubmit={handleCreateNewTransaction}>
+      <Container onSubmit={handleEditTransaction}>
         <h2>Editar Transação</h2>
 
         <input
@@ -114,4 +121,5 @@ export function EditTransactionModal({
       </Container>
     </Modal>
   );
+
 }

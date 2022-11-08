@@ -10,12 +10,12 @@ import { api } from "../../services/api";
 
 function handleEditTransaction(id: any, title: string, category: string, amount: number, type: string) {
   // Função de editar a transação
-  // api.put(`/${id}`, data)
-  // .then(() => {
+   api.put(`/${id}`)
+   .then(() => {
     console.log("edit id", id, title, category, amount, type)
-      // window.location.reload()
-  //   }
-  // );
+      window.location.reload()
+     }
+   );
   
 }
 
