@@ -6,7 +6,7 @@ export class ListUsersController {
         this.ListUserCases = new ListUserCases();
     }
 
-    async handle(req, response) {
+    async handle(request, response) {
         const users = await this.ListUserCases.execute();
 
         return response.json(users);
