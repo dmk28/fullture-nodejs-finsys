@@ -7,9 +7,10 @@ import { FiEdit, FiTrash2 } from "react-icons/fi";
 import moment from "moment";
 
 import { api } from "../../services/api";
+import { EditTransactionModal } from "../EditTransactionModal";
 
 function handleEditTransaction(id: any, title: string, category: string, amount: number, type: string) {
-  // Função de editar a transação
+  EditTransactionModal(id)
    api.put(`/${id}`)
    .then(() => {
     console.log("edit id", id, title, category, amount, type)
